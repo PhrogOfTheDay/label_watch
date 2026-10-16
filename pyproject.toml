@@ -1,0 +1,49 @@
+[build-system]
+requires = ["flit_core >=3.2,<4"]
+build-backend = "flit_core.buildapi"
+
+[project]
+name = "label_watch"
+version = "0.0.1"
+description = "This project is created to allow users to have a simple CLI based application which allows them to track and be notified of changes related to pharmaceutical items that they have an interest in. Personally, this project was undertaken to help me understand how to work with data that comes from live APIs, how to clean and work with messy data on the go instead of relying on clean, preprocessed data stored in files"
+authors = [
+  { name = "Ravindu Goonewardena" },
+]
+
+readme = "README.md"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    
+]
+dependencies = [
+    "inquirerpy>=0.3.4",
+    "loguru",
+    "mkdocs",
+    "pandas>=2.3.3",
+    "pick>=2.6.0",
+    "pip",
+    "pydantic>=2.14.1",
+    "pytest",
+    "python-dotenv",
+    "questionary>=2.1.1",
+    "requests>=2.34.2",
+    "ruff",
+    "tqdm",
+    "typer",
+    "typing>=3.10.0.0",
+]
+requires-python = "~=3.10.0"
+
+
+[tool.ruff]
+line-length = 99
+src = ["label_watch"]
+include = ["pyproject.toml", "label_watch/**/*.py"]
+
+[tool.ruff.lint]
+extend-select = ["I"]  # Add import sorting
+
+[tool.ruff.lint.isort]
+known-first-party = ["label_watch"]
+force-sort-within-sections = true
+
