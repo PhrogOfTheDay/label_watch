@@ -19,7 +19,9 @@ dependencies = [
     "inquirerpy>=0.3.4",
     "loguru",
     "mkdocs",
+    "nicegui>=3.18.0",
     "pandas>=2.3.3",
+    "pandasgui>=0.2.15",
     "pick>=2.6.0",
     "pip",
     "pydantic>=2.14.1",
@@ -28,6 +30,7 @@ dependencies = [
     "questionary>=2.1.1",
     "requests>=2.34.2",
     "ruff",
+    "setuptools<81",
     "tqdm",
     "typer",
     "typing>=3.10.0.0",
@@ -46,4 +49,3 @@ extend-select = ["I"]  # Add import sorting
 [tool.ruff.lint.isort]
 known-first-party = ["label_watch"]
 force-sort-within-sections = true
-

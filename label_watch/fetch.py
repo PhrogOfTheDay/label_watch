@@ -121,6 +121,7 @@ def fetch_from_ndc(
     ndcs=list[str],
     other_params: list[URL_Params] | None = None,
     timeout: int = 20,
+    dosage_form: str | None = None,
     count: str | None = None,
     limit: int | None = 1000,
 ):
@@ -141,6 +142,9 @@ def fetch_from_ndc(
 
     if limit is not None:
         params["limit"] = limit
+
+    if dosage_form is not None:
+        base_url += f' AND dosage_form:"{dosage_form}"'
 
     if other_params:
         for param in other_params:

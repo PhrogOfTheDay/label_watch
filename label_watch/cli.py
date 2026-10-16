@@ -1,7 +1,9 @@
 from typing import Annotated
 
 from InquirerPy import inquirer
+from nicegui import ui
 import pandas as pd
+
 import questionary
 import typer
 
@@ -109,16 +111,22 @@ def select_labels_phase2(
             message="Select the dosage form you want to monitor",
             choices=available_dosage_forms + ["All"],
         ).execute()
-        if selected_dosage_form != "All":
+        if selected_dosage_form != "All Forms":
+            products_with_selected_dosage_form = fetch_from_ndc(
+                product_ndcs, dosage_form=selected_dosage_form
+            )["results"]
+            ndcs_for_selected_dosage_form = [
+                x["product_ndc"] for x in products_with_selected_dosage_form
+            ]
             returned_records = [
                 x
                 for x in returned_records
-                if x["openfda"]["product_ndc"][0] in selected_dosage_form
+                if x["openfda"]["product_ndc"][0] in ndcs_for_selected_dosage_form
             ]
 
     rows = []
 
-    for record in returned_records["results"]:
+    for record in returned_records:
         openfda = record.get("openfda", {})
 
         rows.append(
