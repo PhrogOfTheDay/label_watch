@@ -4,7 +4,7 @@ from loguru import logger
 from tqdm import tqdm
 import typer
 
-from label_watch.cli import PROCESSED_DATA_DIR, RAW_DATA_DIR
+from src.label_watch.cli import PROCESSED_DATA_DIR, RAW_DATA_DIR
 
 app = typer.Typer()
 

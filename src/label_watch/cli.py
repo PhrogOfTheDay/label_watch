@@ -7,8 +7,8 @@ import pandas as pd
 import questionary
 import typer
 
-from label_watch.fetch import fetch_from_ndc, fetch_records_json
-from label_watch.fetch_distinct_values import get_distinct_values
+from src.label_watch.fetch import fetch_from_ndc, fetch_records_json
+from src.label_watch.fetch_distinct_values import get_distinct_values
 
 app = typer.Typer(no_args_is_help=True)
 typer.echo("Welcome to LabelWatch")

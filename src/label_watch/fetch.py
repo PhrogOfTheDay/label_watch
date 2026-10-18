@@ -1,7 +1,8 @@
-from models.label_class import DrugLabel, OpenFDAResponse
-from models.url_param_class import URL_Params
+import pandas as pd
 import requests
-from label_watch.util import createTypeAdapter
+from src.label_watch.util import createTypeAdapter
+from src.models.label_class import DrugLabel, OpenFDAResponse
+from src.models.url_param_class import URL_Params
 
 
 def fetch_records(
@@ -100,21 +101,37 @@ def fetch_records_json(
     if search_expression:
         params["search"] = search_expression
 
-    if count is not None:
-        params["count"] = count
-
     if limit is not None:
         params["limit"] = limit
 
-    response = requests.get(
-        base_url,
-        params=params,
-        timeout=timeout,
-    )
+    results = []
+    while True:
+        response = requests.get(
+            base_url,
+            params=params,
+            timeout=timeout,
+        )
 
-    response.raise_for_status()
+        response.raise_for_status()
 
-    return response.json()
+        data = response.json()
+        results.extend(data.get("results", []))
+        total_records_returned = data["meta"]["results"]["total"]
+
+        if total_records_returned <= limit:
+            break
+        params["skip"] = len(results)
+
+    return construct_dataframe(results, count)
+
+
+def normalize_json(results):
+    df = pd.json_normalize(results, sep=".")
+    return df
+
+
+def construct_dataframe(results, count):
+    df = normalize_json(results)
 
 
 def fetch_from_ndc(

@@ -9,6 +9,7 @@ description = "This project is created to allow users to have a simple CLI based
 authors = [
   { name = "Ravindu Goonewardena" },
 ]
+requires-python = ">=3.10"
 
 readme = "README.md"
 classifiers = [
@@ -16,14 +17,17 @@ classifiers = [
     
 ]
 dependencies = [
+    "duckdb>=1.5.6",
+    "flatten-json>=0.1.14",
+    "ijson>=3.6.0",
     "inquirerpy>=0.3.4",
     "loguru",
     "mkdocs",
     "nicegui>=3.18.0",
     "pandas>=2.3.3",
-    "pandasgui>=0.2.15",
     "pick>=2.6.0",
     "pip",
+    "polars>=2.0.0",
     "pydantic>=2.14.1",
     "pytest",
     "python-dotenv",
@@ -33,9 +37,7 @@ dependencies = [
     "setuptools<81",
     "tqdm",
     "typer",
-    "typing>=3.10.0.0",
 ]
-requires-python = "~=3.10.0"
 
 
 [tool.ruff]
@@ -49,3 +51,6 @@ extend-select = ["I"]  # Add import sorting
 [tool.ruff.lint.isort]
 known-first-party = ["label_watch"]
 force-sort-within-sections = true
+
+[tool.flit.module]
+name = "label_watch"
