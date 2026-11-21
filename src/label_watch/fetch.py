@@ -1,8 +1,8 @@
 import pandas as pd
 import requests
-from src.label_watch.util import createTypeAdapter
-from src.models.label_class import DrugLabel, OpenFDAResponse
-from src.models.url_param_class import URL_Params
+from label_watch.util import createTypeAdapter
+from models.label_class import DrugLabel, OpenFDAResponse
+from models.url_param_class import URL_Params
 
 
 def fetch_records(
