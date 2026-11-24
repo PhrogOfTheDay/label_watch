@@ -24,6 +24,7 @@ dependencies = [
     "loguru",
     "mkdocs",
     "nicegui>=3.18.0",
+    "openai>=3.57.0",
     "pandas>=2.3.3",
     "pick>=2.6.0",
     "pip",
@@ -54,3 +55,5 @@ force-sort-within-sections = true
 
 [tool.flit.module]
 name = "label_watch"
+[tool.uv]
+constraint-dependencies = ["pyqt5-qt5 <=5.15.2"]
