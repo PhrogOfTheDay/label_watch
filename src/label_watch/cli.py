@@ -164,5 +164,26 @@ def add_labels_to_monitor(
     """
 
 
+def start():
+    typer.echo("Welcome to LabelWatch !")
+    typer.echo("This application was designed to assist in helping you monitor drug label changes")
+
+    choice = inquirer.fuzzy(
+        message="Select an option to proceed",
+        choices=[
+            "1. Add new labels to monitor",
+            "2. Check for changes in monitored labels",
+            "3. View monitored labels",
+            "5. Refresh Internal Database (Reccomended on a weekly basis)",
+            "4. Go to options",
+            "5. Exit",
+        ],
+    )[0:1]
+    if choice == "1":
+        select_labels()
+    elif choice == "2":
+        typer.echo("Checking for changes in monitored labels...")
+
+
 if __name__ == "__main__":
     select_labels()
